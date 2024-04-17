@@ -3,7 +3,7 @@ package data;
 
 public class Tool {
 
-    public Tool(String toolCode, String toolType, String brand, Charge charge){
+    public Tool(String toolCode, String toolType, String brand, Charge charge) {
         this.toolCode = toolCode;
         this.toolType = toolType;
         this.brand = brand;
