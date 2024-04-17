@@ -9,7 +9,7 @@ public class Tool {
         this.brand = brand;
 
         this.charge = charge;
-    };
+    }
 
     public final Charge charge;
 
