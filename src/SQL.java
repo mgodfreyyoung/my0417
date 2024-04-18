@@ -1,3 +1,6 @@
+import data.Charge;
+import data.Tool;
+
 import java.math.BigDecimal;
 import java.sql.*;
 
@@ -23,15 +26,15 @@ public class SQL {
 
     void populateSQL(Connection connection) throws SQLException {
 
-        var id = insertIntoCharge(connection, new BigDecimal("1.99"), true, true, true);
-        insertIntoTool(connection, id, "CNNS", "Chainsaw", "Stihl");
+        var chargeID = insertIntoCharge(connection, new Charge(new BigDecimal("1.99"), true, true, true));
+        insertIntoTool(connection, new Tool(chargeID, "CNNS", "Chainsaw", "Stihl"));
 
-        id = insertIntoCharge(connection, new BigDecimal("1.49"), true, false, true);
-        insertIntoTool(connection, id, "LADW", "Ladder", "Werner");
+        chargeID = insertIntoCharge(connection, new Charge(new BigDecimal("1.49"), true, false, true));
+        insertIntoTool(connection, new Tool(chargeID, "LADW", "Ladder", "Werner"));
 
-        id = insertIntoCharge(connection, new BigDecimal("2.99"), true, false, false);
-        insertIntoTool(connection, id, "JAKD", "JakeHammer", "DeWalt");
-        insertIntoTool(connection, id, "JAKR", "JakeHammer", "Ridgid");
+        chargeID = insertIntoCharge(connection, new Charge(new BigDecimal("2.99"), true, false, false));
+        insertIntoTool(connection, new Tool(chargeID, "JAKD", "JakeHammer", "DeWalt"));
+        insertIntoTool(connection, new Tool(chargeID, "JAKR", "JakeHammer", "Ridgid"));
 
         var stat = connection.prepareStatement("select * from tool");
 
@@ -47,24 +50,24 @@ public class SQL {
         }
     }
 
-    private void insertIntoTool(Connection connection, long id, String toolCode, String toolThype, String brand) throws SQLException {
+    private void insertIntoTool(Connection connection, Tool tool) throws SQLException {
         String insertSQL = "INSERT INTO tool (charge_id, tool_code, tool_type, brand) VALUES (?, ?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);
-        preparedStatement.setLong(1, id);
-        preparedStatement.setString(2, toolCode);
-        preparedStatement.setString(3, toolThype);
-        preparedStatement.setString(4, brand);
+        preparedStatement.setLong(1, tool.chargeID);
+        preparedStatement.setString(2, tool.toolCode);
+        preparedStatement.setString(3, tool.toolType);
+        preparedStatement.setString(4, tool.brand);
 
         preparedStatement.executeUpdate();
     }
 
-    private long insertIntoCharge(Connection connection, BigDecimal dailyCharge, boolean weekdayCharge, boolean weekendCharge, boolean holidayCharge) throws SQLException {
+    private long insertIntoCharge(Connection connection, Charge charge) throws SQLException {
         String insertSQL = "INSERT INTO charge (daily_charge, weekday_charge, weekend_charge, holiday_charge) VALUES (?, ?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);
-        preparedStatement.setBigDecimal(1, dailyCharge);
-        preparedStatement.setBoolean(2, weekdayCharge);
-        preparedStatement.setBoolean(3, weekendCharge);
-        preparedStatement.setBoolean(4, holidayCharge);
+        preparedStatement.setBigDecimal(1, charge.dailyCharge);
+        preparedStatement.setBoolean(2, charge.weekdayCharge);
+        preparedStatement.setBoolean(3, charge.weekendCharge);
+        preparedStatement.setBoolean(4, charge.holidayCharge);
 
         preparedStatement.executeUpdate();
 

@@ -12,8 +12,8 @@ public class Charge {
 
     }
 
-    final BigDecimal dailyCharge;
-    final boolean weekdayCharge;
-    final boolean weekendCharge;
-    final boolean holidayCharge;
+    public final BigDecimal dailyCharge;
+    public final boolean weekdayCharge;
+    public final boolean weekendCharge;
+    public final boolean holidayCharge;
 }
