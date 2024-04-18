@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e799bc06-1983-4006-979f-92eb8ec3eac0" name="Changes" comment="removed unneeded imports">
+    <list default="true" id="e799bc06-1983-4006-979f-92eb8ec3eac0" name="Changes" comment="extended error message a bit for clarity.">
       <change beforePath="$PROJECT_DIR$/src/CheckOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CheckOut.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
@@ -100,7 +100,23 @@
       <option name="project" value="LOCAL" />
       <updated>1713398019036</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added in the validateRentalDayCount which makes sure that the rental day count is at least one or greater, Currently just throwing this back up to the caller in the constructor and letting it print the error message out to console.">
+      <option name="closed" value="true" />
+      <created>1713399551514</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1713399551514</updated>
+    </task>
+    <task id="LOCAL-00006" summary="extended error message a bit for clarity.">
+      <option name="closed" value="true" />
+      <created>1713399623166</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1713399623166</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -108,6 +124,8 @@
     <MESSAGE value="changed the vars inside of Tool data class to be final since I do not think these values will every change onces the tool instance is created." />
     <MESSAGE value="added the checkout class with a constructor that takes the needed parameters for the checkout process." />
     <MESSAGE value="removed unneeded imports" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed unneeded imports" />
+    <MESSAGE value="added in the validateRentalDayCount which makes sure that the rental day count is at least one or greater, Currently just throwing this back up to the caller in the constructor and letting it print the error message out to console." />
+    <MESSAGE value="extended error message a bit for clarity." />
+    <option name="LAST_COMMIT_MESSAGE" value="extended error message a bit for clarity." />
   </component>
 </project>
