@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e799bc06-1983-4006-979f-92eb8ec3eac0" name="Changes" comment="changed the vars inside of Tool data class to be final since I do not think these values will every change onces the tool instance is created.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Charge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Charge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Tool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Tool.java" afterDir="false" />
+    <list default="true" id="e799bc06-1983-4006-979f-92eb8ec3eac0" name="Changes" comment="added in the validateDiscountPercentage which throws an exception if the discount percentage is not in range of 0 to 100.">
+      <change beforePath="$PROJECT_DIR$/src/CheckOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CheckOut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,21 +28,21 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "mgodfreyyoung"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;mgodfreyyoung&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/mgodfreyyoung/my0417.git",
-    "accountId": "f7dace08-2521-4863-899e-ed52de6578c9"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/mgodfreyyoung/my0417.git&quot;,
+    &quot;accountId&quot;: &quot;f7dace08-2521-4863-899e-ed52de6578c9&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2fFFnNjgAv32Dz965btdTghPv2s" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -56,7 +55,7 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "data",
+    "git-widget-placeholder": "checkout",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
@@ -85,12 +84,57 @@
       <option name="project" value="LOCAL" />
       <updated>1713392918357</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added the checkout class with a constructor that takes the needed parameters for the checkout process.">
+      <option name="closed" value="true" />
+      <created>1713397943882</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1713397943882</updated>
+    </task>
+    <task id="LOCAL-00004" summary="removed unneeded imports">
+      <option name="closed" value="true" />
+      <created>1713398019036</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1713398019036</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added in the validateRentalDayCount which makes sure that the rental day count is at least one or greater, Currently just throwing this back up to the caller in the constructor and letting it print the error message out to console.">
+      <option name="closed" value="true" />
+      <created>1713399551514</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1713399551514</updated>
+    </task>
+    <task id="LOCAL-00006" summary="extended error message a bit for clarity.">
+      <option name="closed" value="true" />
+      <created>1713399623166</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1713399623166</updated>
+    </task>
+    <task id="LOCAL-00007" summary="added in the validateDiscountPercentage which throws an exception if the discount percentage is not in range of 0 to 100.">
+      <option name="closed" value="true" />
+      <created>1713400410805</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1713400410805</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added in Tool data which will have the code type and brand of our different tools and also the Charge class which tells how much the tool charge is and if it is free if weekday, weekend, or holidays.  Also added a charge class instance to our tool data since each tool with have to have charges associated with it." />
     <MESSAGE value="changed the vars inside of Tool data class to be final since I do not think these values will every change onces the tool instance is created." />
-    <option name="LAST_COMMIT_MESSAGE" value="changed the vars inside of Tool data class to be final since I do not think these values will every change onces the tool instance is created." />
+    <MESSAGE value="added the checkout class with a constructor that takes the needed parameters for the checkout process." />
+    <MESSAGE value="removed unneeded imports" />
+    <MESSAGE value="added in the validateRentalDayCount which makes sure that the rental day count is at least one or greater, Currently just throwing this back up to the caller in the constructor and letting it print the error message out to console." />
+    <MESSAGE value="extended error message a bit for clarity." />
+    <MESSAGE value="added in the validateDiscountPercentage which throws an exception if the discount percentage is not in range of 0 to 100." />
+    <option name="LAST_COMMIT_MESSAGE" value="added in the validateDiscountPercentage which throws an exception if the discount percentage is not in range of 0 to 100." />
   </component>
 </project>

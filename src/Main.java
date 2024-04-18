@@ -1,5 +1,11 @@
+import java.util.Date;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        try {
+            CheckOut checkOut = new CheckOut("CHNS", 0, 100.0f, new Date());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
