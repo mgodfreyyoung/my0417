@@ -7,7 +7,7 @@ import java.sql.*;
 public class SQL {
 
     void createSqlDatabase() {
-        Connection connection = null;
+        Connection connection;
         try {
             // create a database connection
             connection = DriverManager.getConnection("jdbc:sqlite:src/SQLiteDB/inventory.db");
