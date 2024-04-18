@@ -14,7 +14,7 @@ public class CheckOut {
     // if not throw back up to calling method so it can message user properly.
     public void validateRentalDayCount(int rentalDayCount) throws Exception {
         if (rentalDayCount < 1) {
-            throw new Exception("Rental day count is not 1 or greater. Please enter a value for number of rental days that is at least one.");
+            throw new Exception("Rental day count is not 1 or greater. Please enter a value for number of rental days that is at least 1.");
         }
     }
 
