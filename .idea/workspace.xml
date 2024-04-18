@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e799bc06-1983-4006-979f-92eb8ec3eac0" name="Changes" comment="extended error message a bit for clarity.">
+    <list default="true" id="e799bc06-1983-4006-979f-92eb8ec3eac0" name="Changes" comment="added in the validateDiscountPercentage which throws an exception if the discount percentage is not in range of 0 to 100.">
       <change beforePath="$PROJECT_DIR$/src/CheckOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CheckOut.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
@@ -116,7 +116,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713399623166</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added in the validateDiscountPercentage which throws an exception if the discount percentage is not in range of 0 to 100.">
+      <option name="closed" value="true" />
+      <created>1713400410805</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1713400410805</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -126,6 +134,7 @@
     <MESSAGE value="removed unneeded imports" />
     <MESSAGE value="added in the validateRentalDayCount which makes sure that the rental day count is at least one or greater, Currently just throwing this back up to the caller in the constructor and letting it print the error message out to console." />
     <MESSAGE value="extended error message a bit for clarity." />
-    <option name="LAST_COMMIT_MESSAGE" value="extended error message a bit for clarity." />
+    <MESSAGE value="added in the validateDiscountPercentage which throws an exception if the discount percentage is not in range of 0 to 100." />
+    <option name="LAST_COMMIT_MESSAGE" value="added in the validateDiscountPercentage which throws an exception if the discount percentage is not in range of 0 to 100." />
   </component>
 </project>

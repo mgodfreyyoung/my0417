@@ -2,18 +2,13 @@ import java.util.Date;
 
 public class CheckOut {
 
-    public CheckOut(String toolCode, int rentalDayCount, float discountPercentage, Date checkOutDate) {
-        try {
-            validateRentalDayCount(rentalDayCount);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    public CheckOut(String toolCode, int rentalDayCount, float discountPercentage, Date checkOutDate) throws Exception {
 
-        try {
-            validateDiscountPercentage(discountPercentage);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        // validate rental day count and discount percentage...
+        validateRentalDayCount(rentalDayCount);
+        validateDiscountPercentage(discountPercentage);
+
+
     }
 
     // validate that the rental day count is at least one or greater
@@ -24,6 +19,7 @@ public class CheckOut {
         }
     }
 
+    // validate that the discount percentage is from 0 to 100 (
     public void validateDiscountPercentage(float discountPercentage) throws Exception {
         if (discountPercentage < 0 || discountPercentage > 100) {
             throw new Exception("Discount percentage is not in the range of 0 - 100.  Please enter a value from 0 to 100.");
