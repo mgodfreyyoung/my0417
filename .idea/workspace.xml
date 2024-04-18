@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e799bc06-1983-4006-979f-92eb8ec3eac0" name="Changes" comment="changed the vars inside of Tool data class to be final since I do not think these values will every change onces the tool instance is created.">
-      <change afterPath="$PROJECT_DIR$/src/CheckOut.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="e799bc06-1983-4006-979f-92eb8ec3eac0" name="Changes" comment="removed unneeded imports">
+      <change beforePath="$PROJECT_DIR$/src/CheckOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CheckOut.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Charge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Charge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Tool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Tool.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,12 +84,30 @@
       <option name="project" value="LOCAL" />
       <updated>1713392918357</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added the checkout class with a constructor that takes the needed parameters for the checkout process.">
+      <option name="closed" value="true" />
+      <created>1713397943882</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1713397943882</updated>
+    </task>
+    <task id="LOCAL-00004" summary="removed unneeded imports">
+      <option name="closed" value="true" />
+      <created>1713398019036</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1713398019036</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added in Tool data which will have the code type and brand of our different tools and also the Charge class which tells how much the tool charge is and if it is free if weekday, weekend, or holidays.  Also added a charge class instance to our tool data since each tool with have to have charges associated with it." />
     <MESSAGE value="changed the vars inside of Tool data class to be final since I do not think these values will every change onces the tool instance is created." />
-    <option name="LAST_COMMIT_MESSAGE" value="changed the vars inside of Tool data class to be final since I do not think these values will every change onces the tool instance is created." />
+    <MESSAGE value="added the checkout class with a constructor that takes the needed parameters for the checkout process." />
+    <MESSAGE value="removed unneeded imports" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed unneeded imports" />
   </component>
 </project>
