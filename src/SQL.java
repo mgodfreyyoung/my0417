@@ -1,16 +1,24 @@
 import data.Charge;
 import data.Tool;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.sql.*;
 
 public class SQL {
+    final String pathToDatabase = "src/SQLiteDB/inventory.db";
 
     void createSqlDatabase() {
+
+        File databaseFile = new File(pathToDatabase);
+        if (databaseFile.exists()) {
+            return;
+        }
+
         Connection connection;
         try {
             // create a database connection
-            connection = DriverManager.getConnection("jdbc:sqlite:src/SQLiteDB/inventory.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:" + pathToDatabase);
 
             var statement = connection.prepareStatement("create table if not exists tool (id INTEGER PRIMARY KEY, charge_id int, tool_code string, tool_type string, brand string)");
             statement.executeUpdate();
