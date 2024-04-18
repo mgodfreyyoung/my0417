@@ -19,7 +19,7 @@ public class CheckOut {
         }
     }
 
-    // validate that the discount percentage is from 0 to 100 (
+    // validate that the discount percentage is from 0 to 100.
     public void validateDiscountPercentage(float discountPercentage) throws Exception {
         if (discountPercentage < 0 || discountPercentage > 100) {
             throw new Exception("Discount percentage is not in the range of 0 - 100.  Please enter a value from 0 to 100.");
