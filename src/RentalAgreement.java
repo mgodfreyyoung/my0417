@@ -28,6 +28,4 @@ public class RentalAgreement {
         dueDate.add(Calendar.DAY_OF_MONTH, rentalDays);
         return dueDate;
     }
-
-
 }
