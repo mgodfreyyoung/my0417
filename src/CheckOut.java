@@ -1,14 +1,45 @@
-import java.util.Date;
+import data.Charge;
+import data.Tool;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Calendar;
 
 public class CheckOut {
-
-    public CheckOut(String toolCode, int rentalDayCount, float discountPercentage, Date checkOutDate) throws Exception {
+    RentalAgreement rentalAgreement;
+    final String toolCode;
+    final int rentalDayCount;
+    final float discountPercentage;
+    final Calendar checkOutDate;
+    public CheckOut(String toolCode, int rentalDayCount, float discountPercentage, Calendar checkOutDate) throws Exception {
 
         // validate rental day count and discount percentage...
         validateRentalDayCount(rentalDayCount);
         validateDiscountPercentage(discountPercentage);
 
+        this.toolCode = toolCode;
+        this.rentalDayCount = rentalDayCount;
+        this.discountPercentage = discountPercentage;
+        this.checkOutDate = checkOutDate;
 
+    }
+
+    RentalAgreement createRentalAgreement() {
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:sqlite:" + SQL.pathToDatabase);
+
+            var statement = connection.prepareStatement("select * from tool join charge on tool.charge_id = charge.id where tool_code = ? ");
+            statement.setString(1,toolCode);
+            var rs = statement.executeQuery();
+            while (rs.next()) {
+                Tool tool = new Tool(new Charge(rs.getBigDecimal("daily_charge"), rs.getBoolean("weekday_charge"), rs.getBoolean("weekend_charge"), rs.getBoolean("holiday_charge")), rs.getLong("charge_id"), toolCode, rs.getString("tool_type"), rs.getString("brand"));
+                rentalAgreement = new RentalAgreement(tool, rentalDayCount, discountPercentage, checkOutDate);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rentalAgreement;
     }
 
     // validate that the rental day count is at least one or greater
