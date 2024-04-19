@@ -4,6 +4,7 @@ import data.Tool;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Calendar;
 
 public class CheckOut {
@@ -11,9 +12,9 @@ public class CheckOut {
     final String toolCode;
     final int rentalDayCount;
     final float discountPercentage;
-    final Calendar checkOutDate;
+    final LocalDate checkOutDate;
 
-    public CheckOut(String toolCode, int rentalDayCount, int discountPercentage, Calendar checkOutDate) throws Exception {
+    public CheckOut(String toolCode, int rentalDayCount, int discountPercentage, LocalDate checkOutDate) throws Exception {
 
         // validate rental day count and discount percentage...
         validateRentalDayCount(rentalDayCount);
