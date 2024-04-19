@@ -1,7 +1,6 @@
 import data.Tool;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class RentalAgreement {
     private final Tool tool;
