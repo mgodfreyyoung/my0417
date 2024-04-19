@@ -13,7 +13,7 @@ public class CheckOut {
     final float discountPercentage;
     final Calendar checkOutDate;
 
-    public CheckOut(String toolCode, int rentalDayCount, float discountPercentage, Calendar checkOutDate) throws Exception {
+    public CheckOut(String toolCode, int rentalDayCount, int discountPercentage, Calendar checkOutDate) throws Exception {
 
         // validate rental day count and discount percentage...
         validateRentalDayCount(rentalDayCount);

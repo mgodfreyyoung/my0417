@@ -1,5 +1,6 @@
 import data.Tool;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 public class RentalAgreement {
@@ -9,6 +10,7 @@ public class RentalAgreement {
     final float discount;
 
     public Calendar dueDate;
+    public int chargeDays;
 
 
     public RentalAgreement(Tool tool, int rentalDays, float discount, Calendar checkOutDate){
@@ -17,10 +19,17 @@ public class RentalAgreement {
         this.checkOutDate = checkOutDate;
         this.discount = discount;
 
-
-
         this.dueDate = calculateDueDate(rentalDays,checkOutDate);
+
+        this.chargeDays = calculateChargeDays(tool);
     }
+
+    private int calculateChargeDays(Tool tool) {
+        int chargeDays = 0;
+
+        return chargeDays;
+    }
+
 
     Calendar calculateDueDate(int rentalDays, Calendar checkOutDate)
     {

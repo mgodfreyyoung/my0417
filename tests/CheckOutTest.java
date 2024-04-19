@@ -11,7 +11,7 @@ public class CheckOutTest {
         try {
             var calendar = Calendar.getInstance();
             calendar.set(15, Calendar.SEPTEMBER, 3);
-            new CheckOut("JAKR", 5, 101f, calendar);
+            new CheckOut("JAKR", 5, 101, calendar);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
