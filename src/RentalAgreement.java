@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
+import java.util.HashMap;
+import java.util.Map;
+
+import static java.util.Map.entry;
 
 public class RentalAgreement {
     private final Tool tool;
@@ -38,9 +42,14 @@ public class RentalAgreement {
 
         // Exclude weekends from the range
         if (!tool.chaarge.weekendCharge) {
-
             var numberOfWeekEndDays = getWeekEndDays(checkOutDate, dueDate);
             numberOfChargeDays -= numberOfWeekEndDays;
+        }
+
+        // Exclude weekdays from the range
+        if (!tool.chaarge.weekdayCharge) {
+            var numberOfWeekEndDays = getWeekEndDays(checkOutDate, dueDate);
+            numberOfChargeDays -= numberOfChargeDays - numberOfWeekEndDays;
         }
 
         checkForHolidayExcludes(numberOfYears, (int year) -> {
