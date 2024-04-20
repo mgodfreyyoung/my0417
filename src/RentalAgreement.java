@@ -4,11 +4,12 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
 
 public class RentalAgreement {
     private final Tool tool;
     private final int renatDays;
-    private final LocalDate checkOutDate;
+    private LocalDate checkOutDate;
     final float discount;
 
     public LocalDate dueDate;
@@ -23,10 +24,10 @@ public class RentalAgreement {
 
         this.dueDate = calculateDueDate(rentalDays, checkOutDate);
 
-        calculateChargeDays(tool, checkOutDate);
+        calculateChargeDays(tool);
     }
 
-    private void calculateChargeDays(Tool tool, LocalDate checkOutDate) {
+    private void calculateChargeDays(Tool tool) {
 
         numberOfChargeDays = findNumberOfDaysInDateRange(checkOutDate, dueDate);
 
@@ -35,21 +36,65 @@ public class RentalAgreement {
 
         // exclude any days that are not charged by subtracting them from the numberOfChargeDays
 
-       checkForHolidayExcludes(numberOfYears,(int year) -> {
-           // labor day
-           return getLaborDayFromYear(checkOutDate.getYear() + year);
-       });
+        // Exclude weekends from the range
+        if (!tool.chaarge.weekendCharge) {
 
-        checkForHolidayExcludes(numberOfYears,(int year) -> {
-            // july forth
+            var numberOfWeekEndDays = getWeekEndDays(checkOutDate, dueDate);
+            numberOfChargeDays -= numberOfWeekEndDays;
+        }
+
+        checkForHolidayExcludes(numberOfYears, (int year) -> {
+            // labor day
+            return getLaborDayFromYear(checkOutDate.getYear() + year);
+        });
+
+        checkForHolidayExcludes(numberOfYears, (int year) -> {
+            // july 4th
             return getJulyForthFromYear(checkOutDate.getYear() + year);
         });
     }
 
+    private long getWeekEndDays(LocalDate checkOutDate, LocalDate dueDate) {
+        var start = checkOutDate;
+        var end = dueDate;
+
+        var numberOfSaturdaysAndSundays = 0L;
+
+        // adjusting our date to start and end on friday's in order to
+        // use the number of weeks to determine the true number of weekends.
+
+        if (start.getDayOfWeek().getValue() > 5) {
+            start = start.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
+
+            // since we start on weekend we have to add in a day or two otherwise they would be skipped when we moved to next Friday
+            numberOfSaturdaysAndSundays += start.getDayOfWeek() == DayOfWeek.SATURDAY ? 2 : 1;
+        }
+
+        if (end.getDayOfWeek().getValue() > 5) {
+            end = end.with(TemporalAdjusters.previous(DayOfWeek.FRIDAY));
+
+            // since we end on weekend we have to add in a day or two otherwise they would be skipped when we moved to previous Friday
+            numberOfSaturdaysAndSundays += end.getDayOfWeek() == DayOfWeek.SUNDAY ? 2 : 1;
+        }
+
+        // if already starts on friday do not move
+        if (start.getDayOfWeek() != DayOfWeek.FRIDAY) {
+            start = start.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
+        }
+        if (end.getDayOfWeek() != DayOfWeek.FRIDAY) {
+            end = end.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
+
+        }
+
+        numberOfSaturdaysAndSundays += (ChronoUnit.WEEKS.between(start, end) * 2);
+
+        return numberOfSaturdaysAndSundays;
+    }
+
     private void checkForHolidayExcludes(int numberOfYears, DateLambda dateLambda) {
         for (int i = 0; i < numberOfYears; i++) {
-            LocalDate laborDay = dateLambda.getHolidayDate(i);
-            if (tool.chaarge.holidayCharge && !(laborDay.isBefore(checkOutDate) || laborDay.isAfter(dueDate))) {
+            LocalDate holidayDate = dateLambda.getHolidayDate(i);
+            if (!tool.chaarge.holidayCharge && !(holidayDate.isBefore(checkOutDate) || holidayDate.isAfter(dueDate))) {
                 numberOfChargeDays--;
             }
         }
@@ -57,16 +102,16 @@ public class RentalAgreement {
 
     private int getNumberOfYearsFromDateRange(LocalDate checkOutDate, LocalDate dueDate) {
         // Calculate the number of years between the two dates
-        Period period = Period.between(checkOutDate, dueDate);
+        var period = Period.between(checkOutDate, dueDate);
 
         // add one because even if the period does not include a full year we still need to check for that year
         return period.getYears() + 1;
     }
 
-
     private long findNumberOfDaysInDateRange(LocalDate checkOutDate, LocalDate dueDate) {
         // plus one because end day is not included in the between but we want to include endDate
-        return ChronoUnit.DAYS.between(checkOutDate, dueDate) + 1;
+        // also plus one to checkOutDay because first day (check out day) does not count to rental days.
+        return ChronoUnit.DAYS.between(checkOutDate.plusDays(1), dueDate) + 1;
     }
 
     private LocalDate getLaborDayFromYear(int year) {

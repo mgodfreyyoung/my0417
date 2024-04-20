@@ -34,10 +34,10 @@ public class SQL {
 
     void populateSQL(Connection connection) throws SQLException {
 
-        var chargeID = insertIntoCharge(connection, new Charge(new BigDecimal("1.99"), true, true, true));
-        insertIntoTool(connection, new Tool(chargeID, "CNNS", "Chainsaw", "Stihl"));
+        var chargeID = insertIntoCharge(connection, new Charge(new BigDecimal("1.99"), true, false, true));
+        insertIntoTool(connection, new Tool(chargeID, "CHNS", "Chainsaw", "Stihl"));
 
-        chargeID = insertIntoCharge(connection, new Charge(new BigDecimal("1.49"), true, false, true));
+        chargeID = insertIntoCharge(connection, new Charge(new BigDecimal("1.49"), true, true, false));
         insertIntoTool(connection, new Tool(chargeID, "LADW", "Ladder", "Werner"));
 
         chargeID = insertIntoCharge(connection, new Charge(new BigDecimal("2.99"), true, false, false));
