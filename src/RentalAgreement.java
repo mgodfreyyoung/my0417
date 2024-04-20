@@ -2,11 +2,8 @@ import data.Tool;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
-import java.util.Locale;
 
 public class RentalAgreement {
     private final Tool tool;
@@ -33,14 +30,26 @@ public class RentalAgreement {
 
         numberOfChargeDays = findNumberOfDaysInDateRange(checkOutDate, dueDate);
 
-        // now we exclude any days that are not charged by subtracting them from the numberOfChargeDays
+        // make sure to check the case where the tool is rented over multiple years (get number of years)
         var numberOfYears = getNumberOfYearsFromDateRange(checkOutDate, dueDate);
 
-        // we have to make sure to check the case where the tool is rented over multiple years
+        // exclude any days that are not charged by subtracting them from the numberOfChargeDays
+
+       checkForHolidayExcludes(numberOfYears,(int year) -> {
+           // labor day
+           return getLaborDayFromYear(checkOutDate.getYear() + year);
+       });
+
+        checkForHolidayExcludes(numberOfYears,(int year) -> {
+            // july forth
+            return getJulyForthFromYear(checkOutDate.getYear() + year);
+        });
+    }
+
+    private void checkForHolidayExcludes(int numberOfYears, DateLambda dateLambda) {
         for (int i = 0; i < numberOfYears; i++) {
-            LocalDate laborDay = getLaborDayFromYear(checkOutDate.getYear() + i);
-            if (tool.chaarge.holidayCharge && !(laborDay.isBefore(checkOutDate) || laborDay.isAfter(dueDate))) ;
-            {
+            LocalDate laborDay = dateLambda.getHolidayDate(i);
+            if (tool.chaarge.holidayCharge && !(laborDay.isBefore(checkOutDate) || laborDay.isAfter(dueDate))) {
                 numberOfChargeDays--;
             }
         }
@@ -49,7 +58,9 @@ public class RentalAgreement {
     private int getNumberOfYearsFromDateRange(LocalDate checkOutDate, LocalDate dueDate) {
         // Calculate the number of years between the two dates
         Period period = Period.between(checkOutDate, dueDate);
-        return period.getYears();
+
+        // add one because even if the period does not include a full year we still need to check for that year
+        return period.getYears() + 1;
     }
 
 
@@ -58,7 +69,7 @@ public class RentalAgreement {
         return ChronoUnit.DAYS.between(checkOutDate, dueDate) + 1;
     }
 
-    public LocalDate getLaborDayFromYear(int year) {
+    private LocalDate getLaborDayFromYear(int year) {
         LocalDate laborDay = LocalDate.of(year, 9, 1);
         while (laborDay.getDayOfWeek() != DayOfWeek.MONDAY) {
             laborDay = laborDay.plusDays(1);
@@ -67,7 +78,17 @@ public class RentalAgreement {
     }
 
 
-    LocalDate calculateDueDate(long rentalDays, LocalDate checkOutDate) {
+    private LocalDate calculateDueDate(long rentalDays, LocalDate checkOutDate) {
         return checkOutDate.plusDays(rentalDays);
+    }
+
+    private LocalDate getJulyForthFromYear(int year) {
+        return LocalDate.of(year, 7, 4);
+    }
+
+
+    @FunctionalInterface
+    interface DateLambda {
+        LocalDate getHolidayDate(int year);
     }
 }
