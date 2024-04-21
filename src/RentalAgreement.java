@@ -1,34 +1,63 @@
 import data.Tool;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.NumberFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Locale;
 
-import static java.util.Map.entry;
 
 public class RentalAgreement {
-    private final Tool tool;
-    private final int renatDays;
-    private LocalDate checkOutDate;
-    final float discount;
 
-    public LocalDate dueDate;
-    public long numberOfChargeDays = 0;
+    private static final BigDecimal ONE_HUNDRED = new BigDecimal(100);
+
+    private final LocalDate checkOutDate;
+
+    private LocalDate dueDate;
+    private long numberOfChargeDays = 0;
+    private BigDecimal preDiscountAmount;
+    private BigDecimal discountAmount;
+    private BigDecimal finalCharge;
 
 
-    public RentalAgreement(Tool tool, int rentalDays, float discount, LocalDate checkOutDate) {
-        this.tool = tool;
-        this.renatDays = rentalDays;
+    public RentalAgreement(Tool tool, int rentalDays, int discount, LocalDate checkOutDate) {
         this.checkOutDate = checkOutDate;
-        this.discount = discount;
 
-        this.dueDate = calculateDueDate(rentalDays, checkOutDate);
+        this.dueDate = calculateDueDate(rentalDays);
 
         calculateChargeDays(tool);
+
+        preDiscountAmount = tool.chaarge.dailyCharge.multiply(new BigDecimal(numberOfChargeDays)).setScale(2, RoundingMode.HALF_UP);
+
+        discountAmount = tool.chaarge.dailyCharge.multiply(new BigDecimal(discount).divide(ONE_HUNDRED, RoundingMode.HALF_UP));
+
+        finalCharge = preDiscountAmount.subtract(discountAmount);
+
+        printAgreement(tool, rentalDays, discount, checkOutDate);
+    }
+
+    public void printAgreement(Tool tool, int rentalDays, int discount, LocalDate checkOutDate) {
+        StringBuilder stringBuilder = new StringBuilder("Tool code: ").append(tool.toolCode).append(System.lineSeparator());
+        stringBuilder.append("Tool type: ").append(tool.toolType).append(System.lineSeparator());
+        stringBuilder.append("Tool brand: ").append(tool.brand).append(System.lineSeparator());
+        stringBuilder.append("Rental days: ").append(rentalDays).append(System.lineSeparator());
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yy");
+        stringBuilder.append("Check out date: ").append(checkOutDate.format(dateFormatter)).append(System.lineSeparator());
+        stringBuilder.append("Due date: ").append(dueDate.format(dateFormatter)).append(System.lineSeparator());
+        NumberFormat currencyFormater = NumberFormat.getCurrencyInstance(Locale.US);
+        stringBuilder.append("Daily rental charge: ").append(currencyFormater.format(tool.chaarge.dailyCharge.doubleValue())).append(System.lineSeparator());
+        stringBuilder.append("Charge days: ").append(rentalDays).append(System.lineSeparator());
+        stringBuilder.append("Pre-discount charge: ").append(currencyFormater.format(preDiscountAmount.doubleValue())).append(System.lineSeparator());
+        stringBuilder.append("Discount percent: ").append(discount).append("%").append(System.lineSeparator());
+        stringBuilder.append("Discount amount: ").append(currencyFormater.format(preDiscountAmount.doubleValue())).append(System.lineSeparator());
+        stringBuilder.append("Final charge: ").append(currencyFormater.format(finalCharge.doubleValue())).append(System.lineSeparator());
+
+        System.out.println(stringBuilder);
     }
 
     private void calculateChargeDays(Tool tool) {
@@ -40,6 +69,8 @@ public class RentalAgreement {
 
         // exclude any days that are not charged by subtracting them from the numberOfChargeDays
 
+        // numberOfWeekEndDays will be used to calculate both the number of weekend days
+        // and the number of weekdays to delete from total charge days as needed.
         var numberOfWeekEndDays = getWeekEndDays(checkOutDate, dueDate);
 
         // if excluding weekends and a holiday falls on the weekend, it should not be excluded twice
@@ -79,7 +110,7 @@ public class RentalAgreement {
 
         var numberOfSaturdaysAndSundays = 0L;
 
-        // adjusting our date to start and end on friday's in order to
+        // adjusting our date to start and end on fridays in order to
         // use the number of weeks to determine the true number of weekends.
 
         if (start.getDayOfWeek().getValue() > 5) {
@@ -130,7 +161,7 @@ public class RentalAgreement {
     }
 
     private long findNumberOfDaysInDateRange(LocalDate checkOutDate, LocalDate dueDate) {
-        // plus one because end day is not included in the between but we want to include endDate
+        // plus one because end day is not included in the between, but we want to include endDate
         // also plus one to checkOutDay because first day (check out day) does not count to rental days.
         return ChronoUnit.DAYS.between(checkOutDate.plusDays(1), dueDate) + 1;
     }
@@ -144,7 +175,7 @@ public class RentalAgreement {
     }
 
 
-    private LocalDate calculateDueDate(long rentalDays, LocalDate checkOutDate) {
+    private LocalDate calculateDueDate(long rentalDays) {
         return checkOutDate.plusDays(rentalDays);
     }
 
@@ -156,5 +187,27 @@ public class RentalAgreement {
     @FunctionalInterface
     interface DateLambda {
         LocalDate getHolidayDate(int year);
+    }
+
+    public class TestDecorator {
+        public LocalDate dueDate() {
+            return dueDate;
+        }
+
+        public long numberOfChargeDays() {
+            return numberOfChargeDays;
+        }
+
+        public BigDecimal preDiscountAmount() {
+            return preDiscountAmount;
+        }
+
+        public BigDecimal discountAmount() {
+            return discountAmount;
+        }
+
+        public BigDecimal finalCharge() {
+            return finalCharge;
+        }
     }
 }
