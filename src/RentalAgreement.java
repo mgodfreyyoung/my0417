@@ -17,31 +17,35 @@ public class RentalAgreement {
     private static final BigDecimal ONE_HUNDRED = new BigDecimal(100);
 
     private final LocalDate checkOutDate;
+    private final LocalDate dueDate;
 
-    private LocalDate dueDate;
+    private final BigDecimal preDiscountAmount;
+    private final BigDecimal discountAmount;
+    private final BigDecimal finalCharge;
+
+    private final Tool tool;
+    private final int rentalDays;
+    private final int discount;
+
     private long numberOfChargeDays = 0;
-    private BigDecimal preDiscountAmount;
-    private BigDecimal discountAmount;
-    private BigDecimal finalCharge;
-
 
     public RentalAgreement(Tool tool, int rentalDays, int discount, LocalDate checkOutDate) {
+        this.tool = tool;
+        this.rentalDays = rentalDays;
+        this.discount = discount;
         this.checkOutDate = checkOutDate;
-
         this.dueDate = calculateDueDate(rentalDays);
 
         calculateChargeDays(tool);
 
         preDiscountAmount = tool.chaarge.dailyCharge.multiply(new BigDecimal(numberOfChargeDays)).setScale(2, RoundingMode.HALF_UP);
 
-        discountAmount = tool.chaarge.dailyCharge.multiply(new BigDecimal(discount).divide(ONE_HUNDRED, RoundingMode.HALF_UP));
+        discountAmount = preDiscountAmount.multiply((new BigDecimal(discount).divide(ONE_HUNDRED, 2, RoundingMode.DOWN))).setScale(2, RoundingMode.HALF_UP);
 
         finalCharge = preDiscountAmount.subtract(discountAmount);
-
-        printAgreement(tool, rentalDays, discount, checkOutDate);
     }
 
-    public void printAgreement(Tool tool, int rentalDays, int discount, LocalDate checkOutDate) {
+    private void printAgreement() {
         StringBuilder stringBuilder = new StringBuilder("Tool code: ").append(tool.toolCode).append(System.lineSeparator());
         stringBuilder.append("Tool type: ").append(tool.toolType).append(System.lineSeparator());
         stringBuilder.append("Tool brand: ").append(tool.brand).append(System.lineSeparator());
@@ -54,7 +58,7 @@ public class RentalAgreement {
         stringBuilder.append("Charge days: ").append(rentalDays).append(System.lineSeparator());
         stringBuilder.append("Pre-discount charge: ").append(currencyFormater.format(preDiscountAmount.doubleValue())).append(System.lineSeparator());
         stringBuilder.append("Discount percent: ").append(discount).append("%").append(System.lineSeparator());
-        stringBuilder.append("Discount amount: ").append(currencyFormater.format(preDiscountAmount.doubleValue())).append(System.lineSeparator());
+        stringBuilder.append("Discount amount: ").append(currencyFormater.format(discountAmount.doubleValue())).append(System.lineSeparator());
         stringBuilder.append("Final charge: ").append(currencyFormater.format(finalCharge.doubleValue())).append(System.lineSeparator());
 
         System.out.println(stringBuilder);
@@ -208,6 +212,10 @@ public class RentalAgreement {
 
         public BigDecimal finalCharge() {
             return finalCharge;
+        }
+
+        public void printAgreement() {
+            RentalAgreement.this.printAgreement();
         }
     }
 }
