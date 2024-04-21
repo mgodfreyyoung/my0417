@@ -81,6 +81,62 @@ public class CheckOutTest {
     }
 
     @Test
+    public void checkoutTestFour() {
+        try {
+            var checkOutDate = LocalDate.of(2015, 9, 3);
+
+            var checkOut = new CheckOut("JAKD", 6, 0, checkOutDate);
+
+
+            // test expected due date
+
+            // 6 total rental days. Sept 3rd to the 9th
+            // jackhammers only have charges on weekdays so 3 days total chargeable.(skipping weekends)
+            // Labor day falls on the 7th so no charge that day plus 2 weekend days
+            // total chargeable = 3 days chargeable out of the 6 rental days
+            var expectedDueDate = LocalDate.of(2015, 9, 9);
+            Assert.assertEquals("rental agreement date does not match our expected date.", expectedDueDate, checkOut.rentalAgreement.dueDate);
+
+            // test number of chargeable rental days
+
+            // number of charge days should be 3 - 5 total days rental - 2 (weekend days)
+
+            Assert.assertEquals("number of charge days is not correct", 3, checkOut.rentalAgreement.numberOfChargeDays);
+
+        } catch (Exception e) {
+
+            Assert.fail("an exception was thrown which should not have been; message = " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void checkoutTestFive() {
+        try {
+            var checkOutDate = LocalDate.of(2015, 7, 2);
+
+            var checkOut = new CheckOut("JAKR", 9, 0, checkOutDate);
+
+            // test expected due date
+
+            // Total days = July 3rd to 11th = 9 rental days
+            // charge on weekdays only
+            // 6 chargeable days (excluding weekends and holidays)
+            var expectedDueDate = LocalDate.of(2015, 7, 11);
+            Assert.assertEquals("rental agreement date does not match our expected date.", expectedDueDate, checkOut.rentalAgreement.dueDate);
+
+            // test number of chargeable rental days
+
+            // number of charge days should be 3 - 5 total days rental - 2 (weekend days)
+
+            Assert.assertEquals("number of charge days is not correct", 6, checkOut.rentalAgreement.numberOfChargeDays);
+
+        } catch (Exception e) {
+
+            Assert.fail("an exception was thrown which should not have been; message = " + e.getMessage());
+        }
+    }
+
+    @Test
     public void checkoutTestMyOwn() {
         try {
             var checkOutDate = LocalDate.of(2015, 7, 2);

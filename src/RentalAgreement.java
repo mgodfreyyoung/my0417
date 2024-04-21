@@ -40,27 +40,37 @@ public class RentalAgreement {
 
         // exclude any days that are not charged by subtracting them from the numberOfChargeDays
 
+        var numberOfWeekEndDays = getWeekEndDays(checkOutDate, dueDate);
+
+        // if excluding weekends and a holiday falls on the weekend, it should not be excluded twice
+        // this boolean will handle that situation later.
+        boolean excludeWeekends = false;
         // Exclude weekends from the range
         if (!tool.chaarge.weekendCharge) {
-            var numberOfWeekEndDays = getWeekEndDays(checkOutDate, dueDate);
             numberOfChargeDays -= numberOfWeekEndDays;
+            excludeWeekends = true;
         }
 
+        // if excluding weekends and a holiday falls on the weekday, it should not be excluded twice
+        // this boolean will handle that situation later.
+        boolean excludeWeekdays = false;
         // Exclude weekdays from the range
         if (!tool.chaarge.weekdayCharge) {
-            var numberOfWeekEndDays = getWeekEndDays(checkOutDate, dueDate);
             numberOfChargeDays -= numberOfChargeDays - numberOfWeekEndDays;
+            excludeWeekdays = true;
         }
 
-        checkForHolidayExcludes(numberOfYears, (int year) -> {
-            // labor day
-            return getLaborDayFromYear(checkOutDate.getYear() + year);
-        });
+        if (!tool.chaarge.holidayCharge) {
+            checkForHolidayExcludes(numberOfYears, excludeWeekends, excludeWeekdays, (int year) -> {
+                // labor day
+                return getLaborDayFromYear(checkOutDate.getYear() + year);
+            });
 
-        checkForHolidayExcludes(numberOfYears, (int year) -> {
-            // july 4th
-            return getJulyForthFromYear(checkOutDate.getYear() + year);
-        });
+            checkForHolidayExcludes(numberOfYears, excludeWeekends, excludeWeekdays, (int year) -> {
+                // july 4th
+                return getJulyForthFromYear(checkOutDate.getYear() + year);
+            });
+        }
     }
 
     private long getWeekEndDays(LocalDate checkOutDate, LocalDate dueDate) {
@@ -100,10 +110,12 @@ public class RentalAgreement {
         return numberOfSaturdaysAndSundays;
     }
 
-    private void checkForHolidayExcludes(int numberOfYears, DateLambda dateLambda) {
+    private void checkForHolidayExcludes(int numberOfYears, boolean excludeWeekends, boolean excludeWeekDays, DateLambda dateLambda) {
         for (int i = 0; i < numberOfYears; i++) {
             LocalDate holidayDate = dateLambda.getHolidayDate(i);
-            if (!tool.chaarge.holidayCharge && !(holidayDate.isBefore(checkOutDate) || holidayDate.isAfter(dueDate))) {
+            if (!(holidayDate.isBefore(checkOutDate) || holidayDate.isAfter(dueDate)
+                    && !(excludeWeekDays && holidayDate.getDayOfWeek().getValue() <= 5))
+                    && !(excludeWeekends && holidayDate.getDayOfWeek().getValue() > 5)) {
                 numberOfChargeDays--;
             }
         }
