@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.sql.*;
 
 public class SQL {
-    final static String pathToDatabase = "src/SQLiteDB/inventory.db";
+    final static String pathToDatabase = "src/data/inventory.db";
 
     void createSqlDatabase() {
 
