@@ -71,19 +71,21 @@ public class CheckOutTest {
             rentalAgreementTestDecorator.printAgreement();
 
             final var outputStreamString = outputStream.toString();
-            Assert.assertEquals("rental agreement output incorrect.", outputStreamString,
-                    "Tool code: LADW\n" +
-                            "Tool type: Ladder\n" +
-                            "Tool brand: Werner\n" +
-                            "Rental days: 3\n" +
-                            "Check out date: 07/02/20\n" +
-                            "Due date: 07/05/20\n" +
-                            "Daily rental charge: $1.99\n" +
-                            "Charge days: 3\n" +
-                            "Pre-discount charge: $3.98\n" +
-                            "Discount percent: 10%\n" +
-                            "Discount amount: $0.40\n" +
-                            "Final charge: $3.58\n\n");
+            Assert.assertEquals("rental agreement output incorrect.", outputStreamString, """
+                    Tool code: LADW
+                    Tool type: Ladder
+                    Tool brand: Werner
+                    Rental days: 3
+                    Check out date: 07/02/20
+                    Due date: 07/05/20
+                    Daily rental charge: $1.99
+                    Charge days: 3
+                    Pre-discount charge: $3.98
+                    Discount percent: 10%
+                    Discount amount: $0.40
+                    Final charge: $3.58
+
+                    """);
 
 
         } catch (Exception e) {
@@ -130,19 +132,21 @@ public class CheckOutTest {
             rentalAgreementTestDecorator.printAgreement();
 
             final var outputStreamString = outputStream.toString();
-            Assert.assertEquals("rental agreement output incorrect.", outputStreamString,
-                    "Tool code: CHNS\n" +
-                            "Tool type: Chainsaw\n" +
-                            "Tool brand: Stihl\n" +
-                            "Rental days: 5\n" +
-                            "Check out date: 07/02/15\n" +
-                            "Due date: 07/07/15\n" +
-                            "Daily rental charge: $1.49\n" +
-                            "Charge days: 5\n" +
-                            "Pre-discount charge: $4.47\n" +
-                            "Discount percent: 25%\n" +
-                            "Discount amount: $1.12\n" +
-                            "Final charge: $3.35\n\n");
+            Assert.assertEquals("rental agreement output incorrect.", outputStreamString, """
+                    Tool code: CHNS
+                    Tool type: Chainsaw
+                    Tool brand: Stihl
+                    Rental days: 5
+                    Check out date: 07/02/15
+                    Due date: 07/07/15
+                    Daily rental charge: $1.49
+                    Charge days: 5
+                    Pre-discount charge: $4.47
+                    Discount percent: 25%
+                    Discount amount: $1.12
+                    Final charge: $3.35
+
+                    """);
 
         } catch (Exception e) {
 
@@ -192,19 +196,21 @@ public class CheckOutTest {
             rentalAgreementTestDecorator.printAgreement();
 
             final var outputStreamString = outputStream.toString();
-            Assert.assertEquals("rental agreement output incorrect.", outputStreamString,
-                    "Tool code: JAKD\n" +
-                            "Tool type: JakeHammer\n" +
-                            "Tool brand: DeWalt\n" +
-                            "Rental days: 6\n" +
-                            "Check out date: 09/03/15\n" +
-                            "Due date: 09/09/15\n" +
-                            "Daily rental charge: $2.99\n" +
-                            "Charge days: 6\n" +
-                            "Pre-discount charge: $8.97\n" +
-                            "Discount percent: 0%\n" +
-                            "Discount amount: $0.00\n" +
-                            "Final charge: $8.97\n\n");
+            Assert.assertEquals("rental agreement output incorrect.", outputStreamString, """
+                    Tool code: JAKD
+                    Tool type: JakeHammer
+                    Tool brand: DeWalt
+                    Rental days: 6
+                    Check out date: 09/03/15
+                    Due date: 09/09/15
+                    Daily rental charge: $2.99
+                    Charge days: 6
+                    Pre-discount charge: $8.97
+                    Discount percent: 0%
+                    Discount amount: $0.00
+                    Final charge: $8.97
+
+                    """);
 
         } catch (Exception e) {
 
@@ -251,19 +257,21 @@ public class CheckOutTest {
             rentalAgreementTestDecorator.printAgreement();
 
             final var outputStreamString = outputStream.toString();
-            Assert.assertEquals("rental agreement output incorrect.", outputStreamString,
-                    "Tool code: JAKR\n" +
-                            "Tool type: JakeHammer\n" +
-                            "Tool brand: Ridgid\n" +
-                            "Rental days: 9\n" +
-                            "Check out date: 07/02/15\n" +
-                            "Due date: 07/11/15\n" +
-                            "Daily rental charge: $2.99\n" +
-                            "Charge days: 9\n" +
-                            "Pre-discount charge: $17.94\n" +
-                            "Discount percent: 0%\n" +
-                            "Discount amount: $0.00\n" +
-                            "Final charge: $17.94\n\n");
+            Assert.assertEquals("rental agreement output incorrect.", outputStreamString, """
+                    Tool code: JAKR
+                    Tool type: JakeHammer
+                    Tool brand: Ridgid
+                    Rental days: 9
+                    Check out date: 07/02/15
+                    Due date: 07/11/15
+                    Daily rental charge: $2.99
+                    Charge days: 9
+                    Pre-discount charge: $17.94
+                    Discount percent: 0%
+                    Discount amount: $0.00
+                    Final charge: $17.94
+
+                    """);
 
         } catch (Exception e) {
 
@@ -307,19 +315,21 @@ public class CheckOutTest {
             rentalAgreementTestDecorator.printAgreement();
 
             final var outputStreamString = outputStream.toString();
-            Assert.assertEquals("rental agreement output incorrect.", outputStreamString,
-                    "Tool code: JAKR\n" +
-                            "Tool type: JakeHammer\n" +
-                            "Tool brand: Ridgid\n" +
-                            "Rental days: 4\n" +
-                            "Check out date: 07/02/20\n" +
-                            "Due date: 07/06/20\n" +
-                            "Daily rental charge: $2.99\n" +
-                            "Charge days: 4\n" +
-                            "Pre-discount charge: $5.98\n" +
-                            "Discount percent: 50%\n" +
-                            "Discount amount: $2.99\n" +
-                            "Final charge: $2.99\n\n");
+            Assert.assertEquals("rental agreement output incorrect.", outputStreamString, """
+                    Tool code: JAKR
+                    Tool type: JakeHammer
+                    Tool brand: Ridgid
+                    Rental days: 4
+                    Check out date: 07/02/20
+                    Due date: 07/06/20
+                    Daily rental charge: $2.99
+                    Charge days: 4
+                    Pre-discount charge: $5.98
+                    Discount percent: 50%
+                    Discount amount: $2.99
+                    Final charge: $2.99
+
+                    """);
 
 
         } catch (Exception e) {
