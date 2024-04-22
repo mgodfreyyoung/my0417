@@ -63,5 +63,4 @@ public class CheckOut {
             throw new Exception("Discount percentage is not in the range of 0 - 100.  Please enter a value from 0 to 100.");
         }
     }
-
 }

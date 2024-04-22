@@ -72,10 +72,10 @@ public class SQL {
     private long insertIntoCharge(Connection connection, Charge charge) throws SQLException {
         String insertSQL = "INSERT INTO charge (daily_charge, weekday_charge, weekend_charge, holiday_charge) VALUES (?, ?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);
-        preparedStatement.setBigDecimal(1, charge.dailyCharge);
-        preparedStatement.setBoolean(2, charge.weekdayCharge);
-        preparedStatement.setBoolean(3, charge.weekendCharge);
-        preparedStatement.setBoolean(4, charge.holidayCharge);
+        preparedStatement.setBigDecimal(1, charge.dailyCharge());
+        preparedStatement.setBoolean(2, charge.weekdayCharge());
+        preparedStatement.setBoolean(3, charge.weekendCharge());
+        preparedStatement.setBoolean(4, charge.holidayCharge());
 
         preparedStatement.executeUpdate();
 

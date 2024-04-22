@@ -14,10 +14,10 @@ public class Tool {
     public Tool(Charge charge, long chargeID, String toolCode, String toolType, String brand)
     {
         this(chargeID,toolCode, toolType,brand);
-        this.chaarge = charge;
+        this.charge = charge;
     }
 
-    public Charge chaarge;
+    public Charge charge;
 
     public final long chargeID;
 

@@ -38,7 +38,7 @@ public class RentalAgreement {
 
         calculateChargeDays(tool);
 
-        preDiscountAmount = tool.chaarge.dailyCharge.multiply(new BigDecimal(numberOfChargeDays)).setScale(2, RoundingMode.HALF_UP);
+        preDiscountAmount = tool.charge.dailyCharge().multiply(new BigDecimal(numberOfChargeDays)).setScale(2, RoundingMode.HALF_UP);
 
         discountAmount = preDiscountAmount.multiply((new BigDecimal(discount).divide(ONE_HUNDRED, 2, RoundingMode.DOWN))).setScale(2, RoundingMode.HALF_UP);
 
@@ -54,7 +54,7 @@ public class RentalAgreement {
         stringBuilder.append("Check out date: ").append(checkOutDate.format(dateFormatter)).append(System.lineSeparator());
         stringBuilder.append("Due date: ").append(dueDate.format(dateFormatter)).append(System.lineSeparator());
         NumberFormat currencyFormater = NumberFormat.getCurrencyInstance(Locale.US);
-        stringBuilder.append("Daily rental charge: ").append(currencyFormater.format(tool.chaarge.dailyCharge.doubleValue())).append(System.lineSeparator());
+        stringBuilder.append("Daily rental charge: ").append(currencyFormater.format(tool.charge.dailyCharge().doubleValue())).append(System.lineSeparator());
         stringBuilder.append("Charge days: ").append(rentalDays).append(System.lineSeparator());
         stringBuilder.append("Pre-discount charge: ").append(currencyFormater.format(preDiscountAmount.doubleValue())).append(System.lineSeparator());
         stringBuilder.append("Discount percent: ").append(discount).append("%").append(System.lineSeparator());
@@ -81,7 +81,7 @@ public class RentalAgreement {
         // this boolean will handle that situation later.
         boolean excludeWeekends = false;
         // Exclude weekends from the range
-        if (!tool.chaarge.weekendCharge) {
+        if (!tool.charge.weekendCharge()) {
             numberOfChargeDays -= numberOfWeekEndDays;
             excludeWeekends = true;
         }
@@ -90,12 +90,12 @@ public class RentalAgreement {
         // this boolean will handle that situation later.
         boolean excludeWeekdays = false;
         // Exclude weekdays from the range
-        if (!tool.chaarge.weekdayCharge) {
+        if (!tool.charge.weekdayCharge()) {
             numberOfChargeDays -= numberOfChargeDays - numberOfWeekEndDays;
             excludeWeekdays = true;
         }
 
-        if (!tool.chaarge.holidayCharge) {
+        if (!tool.charge.holidayCharge()) {
             checkForHolidayExcludes(numberOfYears, excludeWeekends, excludeWeekdays, (int year) -> {
                 // labor day
                 return getLaborDayFromYear(checkOutDate.getYear() + year);
