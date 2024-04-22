@@ -19,6 +19,7 @@ public class SQL {
             // create a database connection
             Connection connection = DriverManager.getConnection("jdbc:sqlite:" + pathToDatabase);
 
+            // create tables
             var statement = connection.prepareStatement("create table if not exists tool (id INTEGER PRIMARY KEY, charge_id int, tool_code string, tool_type string, brand string)");
             statement.executeUpdate();
             statement = connection.prepareStatement("create table if not exists charge (id INTEGER PRIMARY KEY, daily_charge DECIMAL(10,2), weekday_charge bit, weekend_charge bit, holiday_charge bit)");
