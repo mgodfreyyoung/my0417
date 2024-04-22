@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e799bc06-1983-4006-979f-92eb8ec3eac0" name="Changes" comment="added printAgreement to the test decorator; added in sixth test from docs; made sure to check the preDiscountAmount, discountAmount and the finalCharge for all the test cases.">
+    <list default="true" id="e799bc06-1983-4006-979f-92eb8ec3eac0" name="Changes" comment="pushing up code with the SQL directory already created (we could create the directory if it does not exist but an assumption is the dir does exist and makes more sense to make part of project then creating each time.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RentalAgreement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RentalAgreement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Charge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Charge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Holidays.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Tool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Tool.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +65,7 @@
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "rentalAgreement",
+    "git-widget-placeholder": "addingSQLDirectory",
     "kotlin-language-version-configured": "true",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
@@ -315,17 +310,66 @@
       <option name="project" value="LOCAL" />
       <updated>1713743959168</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="added in unit test for the rental agreement output.">
+      <option name="closed" value="true" />
+      <created>1713748169813</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1713748169813</updated>
+    </task>
+    <task id="LOCAL-00028" summary="converted to text blocks (better readability and optimization plus avoids lint issues)">
+      <option name="closed" value="true" />
+      <created>1713748943354</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1713748943354</updated>
+    </task>
+    <task id="LOCAL-00029" summary="diffing code; making sure to close sql database.">
+      <option name="closed" value="true" />
+      <created>1713749331130</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1713749331130</updated>
+    </task>
+    <task id="LOCAL-00030" summary="quick fix of some lint comment issues (so should be presided by comma)">
+      <option name="closed" value="true" />
+      <created>1713749752127</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1713749752127</updated>
+    </task>
+    <task id="LOCAL-00031" summary="fixed the output to use the correct charge days.">
+      <option name="closed" value="true" />
+      <created>1713750077586</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1713750077586</updated>
+    </task>
+    <task id="LOCAL-00032" summary="formatting, added comment">
+      <option name="closed" value="true" />
+      <created>1713750423541</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1713750423541</updated>
+    </task>
+    <task id="LOCAL-00033" summary="pushing up code with the SQL directory already created (we could create the directory if it does not exist but an assumption is the dir does exist and makes more sense to make part of project then creating each time.">
+      <option name="closed" value="true" />
+      <created>1713752068573</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1713752068573</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="changed the vars inside of Tool data class to be final since I do not think these values will every change onces the tool instance is created." />
-    <MESSAGE value="added the checkout class with a constructor that takes the needed parameters for the checkout process." />
-    <MESSAGE value="removed unneeded imports" />
-    <MESSAGE value="added in the validateRentalDayCount which makes sure that the rental day count is at least one or greater, Currently just throwing this back up to the caller in the constructor and letting it print the error message out to console." />
-    <MESSAGE value="extended error message a bit for clarity." />
-    <MESSAGE value="added in the validateDiscountPercentage which throws an exception if the discount percentage is not in range of 0 to 100." />
-    <MESSAGE value="created sql branch, removed unused import" />
     <MESSAGE value="added the SQLite JDBC library - dependency erial.sqlite.jdbc" />
     <MESSAGE value="now creating the tool and charge database and populating with the sample data (will move this over to the test class at some point since we will end up only populating the test data in the junit test)" />
     <MESSAGE value="now using the java data classes to set up the SQL database inserts...less prone to issues then using parameters" />
@@ -344,37 +388,13 @@
     <MESSAGE value="added in 5th unit test; made sure to not deduct from rental days again if holiday falls on weekend and weekends are excluded and same for the weekday excludes." />
     <MESSAGE value="calculating the pre-discount charge, the discount amount, and final charge; added a test decorator for RentalAgreement class and made all member vars private to preserve encapsulation; added method to print rental agreement using a string builder." />
     <MESSAGE value="added printAgreement to the test decorator; added in sixth test from docs; made sure to check the preDiscountAmount, discountAmount and the finalCharge for all the test cases." />
-    <option name="LAST_COMMIT_MESSAGE" value="added printAgreement to the test decorator; added in sixth test from docs; made sure to check the preDiscountAmount, discountAmount and the finalCharge for all the test cases." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>5</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SQL.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/RentalAgreement.java</url>
-          <line>60</line>
-          <option name="timeStamp" value="58" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/tests/CheckOutTest.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="59" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/RentalAgreement.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="62" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="added in unit test for the rental agreement output." />
+    <MESSAGE value="converted to text blocks (better readability and optimization plus avoids lint issues)" />
+    <MESSAGE value="diffing code; making sure to close sql database." />
+    <MESSAGE value="quick fix of some lint comment issues (so should be presided by comma)" />
+    <MESSAGE value="fixed the output to use the correct charge days." />
+    <MESSAGE value="formatting, added comment" />
+    <MESSAGE value="pushing up code with the SQL directory already created (we could create the directory if it does not exist but an assumption is the dir does exist and makes more sense to make part of project then creating each time." />
+    <option name="LAST_COMMIT_MESSAGE" value="pushing up code with the SQL directory already created (we could create the directory if it does not exist but an assumption is the dir does exist and makes more sense to make part of project then creating each time." />
   </component>
 </project>

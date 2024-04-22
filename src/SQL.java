@@ -6,11 +6,12 @@ import java.math.BigDecimal;
 import java.sql.*;
 
 public class SQL {
-    final static String pathToDatabase = "src/SQLiteDB/inventory.db";
+    final static String pathToDatabase = "src/data/inventory.db";
 
     void createSqlDatabase() {
 
         File databaseFile = new File(pathToDatabase);
+
         if (databaseFile.exists()) {
             return;
         }
@@ -27,7 +28,9 @@ public class SQL {
 
             populateSQL(connection);
 
+            statement.close();
             connection.close();
+
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
