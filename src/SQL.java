@@ -11,6 +11,7 @@ public class SQL {
     void createSqlDatabase() {
 
         File databaseFile = new File(pathToDatabase);
+
         if (databaseFile.exists()) {
             return;
         }
@@ -27,7 +28,9 @@ public class SQL {
 
             populateSQL(connection);
 
+            statement.close();
             connection.close();
+
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
