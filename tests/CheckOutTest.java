@@ -79,7 +79,7 @@ public class CheckOutTest {
                     Check out date: 07/02/20
                     Due date: 07/05/20
                     Daily rental charge: $1.99
-                    Charge days: 3
+                    Charge days: 2
                     Pre-discount charge: $3.98
                     Discount percent: 10%
                     Discount amount: $0.40
@@ -140,7 +140,7 @@ public class CheckOutTest {
                     Check out date: 07/02/15
                     Due date: 07/07/15
                     Daily rental charge: $1.49
-                    Charge days: 5
+                    Charge days: 3
                     Pre-discount charge: $4.47
                     Discount percent: 25%
                     Discount amount: $1.12
@@ -204,7 +204,7 @@ public class CheckOutTest {
                     Check out date: 09/03/15
                     Due date: 09/09/15
                     Daily rental charge: $2.99
-                    Charge days: 6
+                    Charge days: 3
                     Pre-discount charge: $8.97
                     Discount percent: 0%
                     Discount amount: $0.00
@@ -265,7 +265,7 @@ public class CheckOutTest {
                     Check out date: 07/02/15
                     Due date: 07/11/15
                     Daily rental charge: $2.99
-                    Charge days: 9
+                    Charge days: 6
                     Pre-discount charge: $17.94
                     Discount percent: 0%
                     Discount amount: $0.00
@@ -323,7 +323,7 @@ public class CheckOutTest {
                     Check out date: 07/02/20
                     Due date: 07/06/20
                     Daily rental charge: $2.99
-                    Charge days: 4
+                    Charge days: 2
                     Pre-discount charge: $5.98
                     Discount percent: 50%
                     Discount amount: $2.99

@@ -55,7 +55,7 @@ public class RentalAgreement {
         stringBuilder.append("Due date: ").append(dueDate.format(dateFormatter)).append(System.lineSeparator());
         NumberFormat currencyFormater = NumberFormat.getCurrencyInstance(Locale.US);
         stringBuilder.append("Daily rental charge: ").append(currencyFormater.format(tool.charge.dailyCharge().doubleValue())).append(System.lineSeparator());
-        stringBuilder.append("Charge days: ").append(rentalDays).append(System.lineSeparator());
+        stringBuilder.append("Charge days: ").append(numberOfChargeDays).append(System.lineSeparator());
         stringBuilder.append("Pre-discount charge: ").append(currencyFormater.format(preDiscountAmount.doubleValue())).append(System.lineSeparator());
         stringBuilder.append("Discount percent: ").append(discount).append("%").append(System.lineSeparator());
         stringBuilder.append("Discount amount: ").append(currencyFormater.format(discountAmount.doubleValue())).append(System.lineSeparator());
