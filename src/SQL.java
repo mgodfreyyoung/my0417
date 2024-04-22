@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.sql.*;
 
 public class SQL {
-    final String pathToDatabase = "src/SQLiteDB/inventory.db";
+    final static String pathToDatabase = "src/SQLiteDB/inventory.db";
 
     void createSqlDatabase() {
 
@@ -34,10 +34,10 @@ public class SQL {
 
     void populateSQL(Connection connection) throws SQLException {
 
-        var chargeID = insertIntoCharge(connection, new Charge(new BigDecimal("1.99"), true, true, true));
-        insertIntoTool(connection, new Tool(chargeID, "CNNS", "Chainsaw", "Stihl"));
+        var chargeID = insertIntoCharge(connection, new Charge(new BigDecimal("1.49"), true, false, true));
+        insertIntoTool(connection, new Tool(chargeID, "CHNS", "Chainsaw", "Stihl"));
 
-        chargeID = insertIntoCharge(connection, new Charge(new BigDecimal("1.49"), true, false, true));
+        chargeID = insertIntoCharge(connection, new Charge(new BigDecimal("1.99"), true, true, false));
         insertIntoTool(connection, new Tool(chargeID, "LADW", "Ladder", "Werner"));
 
         chargeID = insertIntoCharge(connection, new Charge(new BigDecimal("2.99"), true, false, false));
@@ -72,10 +72,10 @@ public class SQL {
     private long insertIntoCharge(Connection connection, Charge charge) throws SQLException {
         String insertSQL = "INSERT INTO charge (daily_charge, weekday_charge, weekend_charge, holiday_charge) VALUES (?, ?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);
-        preparedStatement.setBigDecimal(1, charge.dailyCharge);
-        preparedStatement.setBoolean(2, charge.weekdayCharge);
-        preparedStatement.setBoolean(3, charge.weekendCharge);
-        preparedStatement.setBoolean(4, charge.holidayCharge);
+        preparedStatement.setBigDecimal(1, charge.dailyCharge());
+        preparedStatement.setBoolean(2, charge.weekdayCharge());
+        preparedStatement.setBoolean(3, charge.weekendCharge());
+        preparedStatement.setBoolean(4, charge.holidayCharge());
 
         preparedStatement.executeUpdate();
 
