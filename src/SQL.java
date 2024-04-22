@@ -15,10 +15,9 @@ public class SQL {
             return;
         }
 
-        Connection connection;
         try {
             // create a database connection
-            connection = DriverManager.getConnection("jdbc:sqlite:" + pathToDatabase);
+            Connection connection = DriverManager.getConnection("jdbc:sqlite:" + pathToDatabase);
 
             var statement = connection.prepareStatement("create table if not exists tool (id INTEGER PRIMARY KEY, charge_id int, tool_code string, tool_type string, brand string)");
             statement.executeUpdate();
@@ -26,6 +25,8 @@ public class SQL {
             statement.executeUpdate();
 
             populateSQL(connection);
+
+            connection.close();
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
