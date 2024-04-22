@@ -63,7 +63,7 @@ public class CheckOutTest {
             // final amount: 3.98 - .40 = $3.58
             Assert.assertEquals("final total incorrect", 3.58, rentalAgreementTestDecorator.finalCharge().doubleValue(), 0);
 
-            // redirect the output that would normally go to the console to a print stream
+            // redirect the output that would normally go to the console to a print stream,
             // so we can make sure it is correct
             final var outputStream = new ByteArrayOutputStream();
             System.setOut(new PrintStream(outputStream));
@@ -124,7 +124,7 @@ public class CheckOutTest {
             // final amount: 4.47 - 1.12 = 3.35
             Assert.assertEquals("final total incorrect", 3.35, rentalAgreementTestDecorator.finalCharge().doubleValue(), 0);
 
-            // redirect the output that would normally go to the console to a print stream
+            // redirect the output that would normally go to the console to a print stream,
             // so we can make sure it is correct
             final var outputStream = new ByteArrayOutputStream();
             System.setOut(new PrintStream(outputStream));
@@ -188,7 +188,7 @@ public class CheckOutTest {
             // final amount: 8.97 - 0 = 8.97
             Assert.assertEquals("final total incorrect", 8.97, rentalAgreementTestDecorator.finalCharge().doubleValue(), 0);
 
-            // redirect the output that would normally go to the console to a print stream
+            // redirect the output that would normally go to the console to a print stream,
             // so we can make sure it is correct
             final var outputStream = new ByteArrayOutputStream();
             System.setOut(new PrintStream(outputStream));
@@ -249,7 +249,7 @@ public class CheckOutTest {
             // final amount: 17.94 - 0 = 17.94
             Assert.assertEquals("final total incorrect", 17.94, rentalAgreementTestDecorator.finalCharge().doubleValue(), 0);
 
-            // redirect the output that would normally go to the console to a print stream
+            // redirect the output that would normally go to the console to a print stream,
             // so we can make sure it is correct
             final var outputStream = new ByteArrayOutputStream();
             System.setOut(new PrintStream(outputStream));
@@ -307,7 +307,7 @@ public class CheckOutTest {
             // final amount: 5.98 - 2.99 = 2.99
             Assert.assertEquals("final total incorrect", 2.99, rentalAgreementTestDecorator.finalCharge().doubleValue(), 0);
 
-            // redirect the output that would normally go to the console to a print stream
+            // redirect the output that would normally go to the console to a print stream,
             // so we can make sure it is correct
             final var outputStream = new ByteArrayOutputStream();
             System.setOut(new PrintStream(outputStream));
